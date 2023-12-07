@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link th:href="@{/sbadmin2/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/sbadmin2/css/sb-admin-2.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link th:href="@{/sbadmin2/vendor/datatables/dataTables.bootstrap4.min.css}" rel="stylesheet">
+
+
+</head>
+<body>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Edit Page</h6>
+    </div>
+    <div class="card-body">
+        <!-- th:object="${board}" 여기에 필드정보 담아서 th:action="@{/board/edit}" 로 post 방식으로 전송-->
+        <form id="form" th:object="${board}" th:action="@{/board/edit}" method="post">
+            <!-- 보드 아이디를 숨은 필드로 추가 : 위 object에 boardId값이 x-->
+            <input type="hidden" th:field="*{boardId}"/>
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" th:field="*{title}" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label>Writer</label>
+                <input type="text" th:field="*{writer}" class="form-control" readonly/>
+            </div>
+            <div class="form-group">
+                <label>Content</label>
+                <textarea rows="5" th:field="*{contents}" class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">완료</button>
+            <button type="button" class="btn btn-warning" th:onclick="goBack()">취소</button>
+        </form>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    function goBack() {
+        window.history.go(-1);
+    }
+    /*]]>*/
+</script>
+
+</body>
+
+</html>

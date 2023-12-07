@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link th:href="@{/sbadmin2/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/sbadmin2/css/sb-admin-2.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link th:href="@{/sbadmin2/vendor/datatables/dataTables.bootstrap4.min.css}" rel="stylesheet">
+</head>
+<body>
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">List Example
+        </h6>
+
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Title</th>
+                    <th>Writer</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="board : ${boardList}">
+                    <td th:text="${board.boardId}">글번호</td>
+                    <td>
+                        <a th:href="@{/board/{boardId}(boardId=${board.boardId})}" th:text="${board.title}">제목</a>
+                    </td>
+                    <td th:text="${board.writer}">작성자</td>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+        <div>
+            <button type="button" class="btn btn-info" th:onclick="|location.href='@{/board/new}'|">글쓰기</button>
+        </div>
+
+    </div>
+</div> <!-- end of DataExample card -->
+</body>
+</html>
